@@ -72,4 +72,28 @@ class DeviceController extends AbstractController
              'producer' => $producer
          ]);
     }
+
+    /**
+     * @Route("/device/edit/{id}")
+     */
+    public function update($id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $device = $entityManager->getRepository(Device::class)->find($id);
+
+        if (!$device) {
+            throw $this->createNotFoundException(
+                'No device found for id '.$id
+            );
+        }
+
+        $device->setPhone('SaMsUNG');
+        $entityManager->flush();
+
+        return $this->redirectToRoute('device_show', [
+            'id' => $device->getId()
+        ]);
+    }
+
+
 }
