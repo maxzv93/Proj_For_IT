@@ -28,9 +28,9 @@ class DeviceController extends AbstractController
 
         $device = new Device();
         $device->setPhone('Samsung');
-        $device->setPrice(9999);
-        $device->setModel('A5');
-        $device->setDisplay(5.5);
+        $device->setPrice(19999);
+        $device->setModel('A6');
+        $device->setDisplay(5.9);
         $device->setProducer("China");
 
         $entityManager->persist($device);
@@ -38,4 +38,38 @@ class DeviceController extends AbstractController
         return new Response('Создано новое устройство с ID = '.$device->getId());
     }
 
+    /**
+     * @Route("/device/{id}", name="device_show")
+     */
+    public function show($id)
+    {
+        $device = $this->getDoctrine()
+            ->getRepository(Device::class)
+            ->find($id);
+
+        if (!$device) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$id
+            );
+        }
+        $phone = $device->getPhone();
+        $model = $device->getModel();
+        $producer = $device->getProducer();
+        $price = $device->getPrice();
+        $display = $device->getDisplay();
+        $memory_size = $device->getMemorySize();
+
+        //return new Response('Информация о продукте '.$device->getModel());
+
+        // or render a template
+        // in the template, print things with {{ product.name }}
+         return $this->render('device/show.html.twig', [
+             'phone' => $phone,
+             'model' => $model,
+             'display' => $display,
+             'price' => $price,
+             'memory_size' => $memory_size,
+             'producer' => $producer
+         ]);
+    }
 }
