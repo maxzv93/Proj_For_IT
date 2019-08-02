@@ -7,7 +7,47 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9"></div>
+                <div class="col-lg-3">
+                    {% block top_header %}
+                        {% if is_granted('USER_ROLE') %}
+                            <a href="{{ path('app_logout',{}) }}">Выход</a>
+                        {% else %}
+                            <a href="{{ path('app_login',{}) }}">Вход</a>
+                            <div>или</div>
+                            <a href="{{ path('app_register',{}) }}">Регистрация</a>
+                        {% endif %}
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    {% block header %} Header {% endblock %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-xs-12">
+                    {% block left_menu %}Left menu{% endblock %}
+                </div>
+                <div class="col-sm-9">
+                    {% block body %}
+
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                {% block footer %}
+                    Разработчик Max (c) 2019
+                {% endblock %}
+                </div>
+            </div>
+        </div>
+
+
         {% block javascripts %}{% endblock %}
     </body>
 </html>

@@ -4,8 +4,14 @@
 
 {% block body %}
     {% for device in devices %}
-        <div>
-            {{ device.phone }}
+        <div class="card" style="width: 18rem;">
+            <img src="{{ device.RefPicture }}" class="card-img-top" alt="">
+            <div class="card-body">
+                <h1></h1>
+                <h5 class="card-title"> {{ device.Phone }}</h5>
+                <p class="card-text">Цена: {{ device.Price }}</p>
+                <a href="{{ path('device_show',{'device' :device.id}) }}" class="btn btn-primary">Больше информаии о {{ device.Phone }} {{ device.Model }}</a>
+            </div>
         </div>
     {% endfor %}
 {% endblock %}

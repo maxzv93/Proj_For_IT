@@ -46,6 +46,13 @@ class Device
      */
     private $MemorySize;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $RefPicture;
+
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -122,4 +129,17 @@ class Device
 
         return $this;
     }
+
+    public function getRefPicture(): ?string
+    {
+        return $this->RefPicture;
+    }
+
+    public function setRefPicture(?string $RefPicture): self
+    {
+        $this->RefPicture = $RefPicture;
+
+        return $this;
+    }
+
 }

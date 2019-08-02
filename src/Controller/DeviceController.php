@@ -18,13 +18,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class DeviceController extends AbstractController
 {
     /**
-     * @Route("/device", name="device")
+     * @Route("/", name="device")
      */
     public function index()
     {
-        return $this->render('device/index.html.twig', [
-            'controller_name' => 'DeviceController',
-        ]);
+        return $this->redirectToRoute('device_list');
+//        return $this->render('device/index.html.twig', [
+//            'controller_name' => 'DeviceController',
+//        ]);
     }
 
     /**
@@ -80,6 +81,13 @@ class DeviceController extends AbstractController
                     'label'=> 'Память устройства в Гб',
                     'attr'=>[
                         'placeholder' => '16'
+                    ]
+                ])
+            ->add('RefPicture', TextType::class,
+                ['required'=> false,
+                    'label'=> 'Ссылка на картинку',
+                    'attr'=>[
+                        'placeholder' => 'http//...../'
                     ]
                 ])
             ->add('save', SubmitType::class, [
@@ -176,9 +184,7 @@ class DeviceController extends AbstractController
             'device/list.html.twig',
             ["devices" => $devices]
         );
-
-
-    }
+   }
 
 
 }

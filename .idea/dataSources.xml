@@ -14,7 +14,7 @@
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\user\Desktop\web\Proj_for_IT\my_project\var\data.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/var/data.db</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>
