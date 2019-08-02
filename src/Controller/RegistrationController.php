@@ -36,7 +36,7 @@ class RegistrationController extends AbstractController
 
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('random');
+            return $this->redirectToRoute('device_list');
         }
 
         return $this->render('registration/register.html.twig', [

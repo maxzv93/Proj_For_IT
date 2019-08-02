@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DeviceController!{% endblock %}
+
+{% block body %}
+    {% for device in devices %}
+        <div>
+            {{ device.phone }}
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -36,4 +36,5 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-         - { path: ^/, roles: ROLE_USER }
+         - { path: ^/deviceList, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/*, roles: [IS_AUTHENTICATED_FULLY] }

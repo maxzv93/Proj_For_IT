@@ -86,7 +86,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         }
 
         // For example :
-        return new RedirectResponse($this->urlGenerator->generate('random'));
+        return new RedirectResponse($this->urlGenerator->generate('device_list'));
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
