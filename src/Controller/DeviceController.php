@@ -156,11 +156,11 @@ class DeviceController extends AbstractController
             );
         }
 
-        $device->setPhone('SaMsUNG');
+        $device->setPhone('SamsUNG');
         $entityManager->flush();
 
         return $this->redirectToRoute('device_show', [
-            'id' => $device->getId()
+            'device' => $device->getId()
         ]);
     }
 
