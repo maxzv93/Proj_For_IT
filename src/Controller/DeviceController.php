@@ -290,27 +290,40 @@ class DeviceController extends AbstractController
         $defaultData = ['message' => 'your message here'];
         $form = $this->createFormBuilder($defaultData)
             ->add('Phone', TextType::class,[
-                'required' => false])
-            ->add('send', SubmitType::class)
+                'required' => false,
+                'label' => 'Производитель'])
+            ->add('MinVol', IntegerType::class,[
+                'required' => false,
+                'label' => 'Минимальный объем памяти'])
+            ->add('MaxVol', IntegerType::class,[
+                'required' => false,
+                'label' => 'Максимальный объем памяти'])
+            ->add('MinPrice', IntegerType::class,[
+                'required' => false,
+                'label' => 'Минимальная цена'])
+            ->add('MaxPrice', IntegerType::class,[
+                'required' => false,
+                'label' => 'Максимальная цена'])
+            ->add('send', SubmitType::class,['label' => 'Поиск'])
             ->getForm();
 
         $form->handleRequest($request);
+        $data = $form->getData();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            // data is an array with "name", "email", and "message" keys
-//            dd($form->getData());
-            $data = $form->getData();
-            $data = $data['Phone'];
+        if ($form->isSubmitted() && $form->isValid() &&
+            (($data['Phone']!="") || ($data['MinPrice']!="") || ($data['MaxPrice']!="")
+                || ($data['MinVol']!="") || ($data['MaxVol']!=""))
+        )
+        {
 
-            $repository = $this->getDoctrine()
-                ->getRepository(Device::class);
-            $devices = $repository->findBy(['Phone' => $data]);
+            $devices= $this->getDoctrine()
+                ->getRepository(Device::class)->findAllEqualToPhone($data);
+
         }
         else{
             $repository = $this->getDoctrine()
                 ->getRepository(Device::class);
             $devices = $repository->findAll();
-            $data = "";
         }
 
 //        $data = $form->getData();
@@ -326,8 +339,7 @@ class DeviceController extends AbstractController
         return $this->render(
             'device/list.html.twig',
             ["devices" => $devices,
-             "form" => $form->createView(),
-             "data" => $data
+             "form" => $form->createView()
             ]
         );
     }

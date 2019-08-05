@@ -24,9 +24,7 @@
                         {% if is_granted('ROLE_USER') %}
                             <a href="{{ path('app_logout',{}) }}">Выход</a>
                         {% else %}
-                            <a href="{{ path('app_login',{}) }}">Вход</a>
-                            <div>или</div>
-                            <a href="{{ path('app_register',{}) }}">Регистрация</a>
+                            <a href="{{ path('app_login',{}) }}">Вход </a>или<a href="{{ path('app_register',{}) }}"> Регистрация</a>
                         {% endif %}
                     {% endblock %}
                 </div>
