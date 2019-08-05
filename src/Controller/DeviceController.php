@@ -40,65 +40,64 @@ class DeviceController extends AbstractController
         $form = $this
             ->createFormBuilder($device)
             ->add('Phone', TextType::class,
-                ['required'=> true,
-                 'label'=> 'Марка телефона',
-                 'attr'=>[
-                     'placeholder' => 'iPhone'
-                 ]
+                ['required' => true,
+                    'label' => 'Марка телефона',
+                    'attr' => [
+                        'placeholder' => 'iPhone'
+                    ]
                 ])
             ->add('Model', TextType::class,
-                ['required'=> true,
-                    'label'=> 'Модель телефона',
-                    'attr'=>[
+                ['required' => true,
+                    'label' => 'Модель телефона',
+                    'attr' => [
                         'placeholder' => 'X'
                     ]
                 ])
             ->add('Producer', TextType::class,
-                ['required'=> true,
-                    'label'=> 'Страна производитель',
-                    'attr'=>[
+                ['required' => true,
+                    'label' => 'Страна производитель',
+                    'attr' => [
                         'placeholder' => 'China'
                     ]
                 ])
             ->add('Display', TextType::class,
-                ['required'=> false,
-                    'label'=> 'Диагональ экрана в дюймах',
-                    'attr'=>[
+                ['required' => false,
+                    'label' => 'Диагональ экрана в дюймах',
+                    'attr' => [
                         'placeholder' => '5.5'
                     ]
                 ])
-            ->add('Price',MoneyType::class,
-                ['required'=> true,
+            ->add('Price', MoneyType::class,
+                ['required' => true,
 
-                    'label'=> 'Цена, руб',
-                    'attr'=>[
+                    'label' => 'Цена, руб',
+                    'attr' => [
                         'currency' => 'RUB',
                         'placeholder' => '50000'
                     ]
                 ])
             ->add('MemorySize', IntegerType::class,
-                ['required'=> false,
-                    'label'=> 'Память устройства в Гб',
-                    'attr'=>[
+                ['required' => false,
+                    'label' => 'Память устройства в Гб',
+                    'attr' => [
                         'placeholder' => '16'
                     ]
                 ])
             ->add('RefPicture', TextType::class,
-                ['required'=> false,
-                    'label'=> 'Ссылка на картинку',
-                    'attr'=>[
+                ['required' => false,
+                    'label' => 'Ссылка на картинку',
+                    'attr' => [
                         'placeholder' => 'http//...../'
                     ]
                 ])
             ->add('save', SubmitType::class, [
                 'label' => "Сохранить"
             ])
-            ->getForm()
-            ;
+            ->getForm();
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() and $form->isValid()){
+        if ($form->isSubmitted() and $form->isValid()) {
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($device);
             $manager->flush();
@@ -151,25 +150,102 @@ class DeviceController extends AbstractController
     }
 
     /**
-     * @Route("/device/edit/{id}")
+     * @IsGranted("ROLE_ADMIN_USER")
+     * @Route("/device/edit/{id}", requirements={"id"="\d+"}, name="device_edit")
+     * @param Device $device
+     * @param Request $request
+     * @return RedirectResponse|Response
      */
-    public function update($id)
+    public function deviceUpdate(Device $device,Request $request)//Request $request,$id)
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        $device = $entityManager->getRepository(Device::class)->find($id);
+//        $entityManager = $this->getDoctrine()->getManager();
+//        $device = $entityManager->getRepository(Device::class)->find($id);
+//
+//        if (!$device) {
+//            throw $this->createNotFoundException(
+//                'No device found for id ' . $id
+//            );
+//        }
+//
+//        $device->setPhone('SAMSUNG');
+//        $entityManager->flush();
+//
+//        return $this->redirectToRoute('device_show', [
+//            'device' => $device->getId()
+//        ]);
 
-        if (!$device) {
-            throw $this->createNotFoundException(
-                'No device found for id ' . $id
-            );
+        $form = $this
+            ->createFormBuilder($device)
+            ->add('Phone', TextType::class,
+                ['required' => true,
+                    'label' => 'Марка телефона',
+                    'attr' => [
+                        'placeholder' => 'iPhone'
+                    ]
+                ])
+            ->add('Model', TextType::class,
+                ['required' => true,
+                    'label' => 'Модель телефона',
+                    'attr' => [
+                        'placeholder' => 'X'
+                    ]
+                ])
+            ->add('Producer', TextType::class,
+                ['required' => true,
+                    'label' => 'Страна производитель',
+                    'attr' => [
+                        'placeholder' => 'China'
+                    ]
+                ])
+            ->add('Display', TextType::class,
+                ['required' => false,
+                    'label' => 'Диагональ экрана в дюймах',
+                    'attr' => [
+                        'placeholder' => '5.5'
+                    ]
+                ])
+            ->add('Price', MoneyType::class,
+                ['required' => true,
+
+                    'label' => 'Цена, руб',
+                    'attr' => [
+                        'currency' => 'RUB',
+                        'placeholder' => '50000'
+                    ]
+                ])
+            ->add('MemorySize', IntegerType::class,
+                ['required' => false,
+                    'label' => 'Память устройства в Гб',
+                    'attr' => [
+                        'placeholder' => '16'
+                    ]
+                ])
+            ->add('RefPicture', TextType::class,
+                ['required' => false,
+                    'label' => 'Ссылка на картинку',
+                    'attr' => [
+                        'placeholder' => 'http//...../'
+                    ]
+                ])
+            ->add('save', SubmitType::class, [
+                'label' => "Сохранить"
+            ])
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() and $form->isValid()) {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($device);
+            $manager->flush();
+
+            return $this->redirectToRoute('device_list');
         }
 
-        $device->setPhone('SamsUNG');
-        $entityManager->flush();
 
-        return $this->redirectToRoute('device_show', [
-            'device' => $device->getId()
-        ]);
+        return $this->render(
+            'device/edit.html.twig',
+            ["form" => $form->createView()]);
     }
 
     /**
@@ -184,7 +260,15 @@ class DeviceController extends AbstractController
             'device/list.html.twig',
             ["devices" => $devices]
         );
-   }
+    }
+
+    /**
+     * @Route("/device/edit/{id}/delete", requirements={"id"="\d+"}, name="device_delete")
+     */
+    public function deleteDevice($id)
+    {
+
+    }
 
 
 }

@@ -13,7 +13,7 @@
                 <div class="col-lg-9"></div>
                 <div class="col-lg-3">
                     {% block top_header %}
-                        {% if is_granted('USER_ROLE') %}
+                        {% if is_granted('ROLE_USER') %}
                             <a href="{{ path('app_logout',{}) }}">Выход</a>
                         {% else %}
                             <a href="{{ path('app_login',{}) }}">Вход</a>
@@ -25,7 +25,13 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    {% block header %} Header {% endblock %}
+                    {% block header %}
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <a type="button" href="{{  path('device_list',{}) }}" class="btn btn-primary">Главная</a>
+                            <a type="button" class="btn btn-primary">Поддержка</a>
+                            <a type="button" class="btn btn-primary">Контакты</a>
+                        </div>
+                    {% endblock %}
                 </div>
             </div>
             <div class="row">

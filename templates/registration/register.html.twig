@@ -2,7 +2,7 @@
     {% block title %}Register{% endblock %}
 
  {% block top_header %}
-     {% if is_granted('USER_ROLE') %}
+     {% if is_granted('ROLE_USER') %}
          <a href="{{ path('app_logout',{}) }}">Выход</a>
      {% else %}
          <a href="{{ path('app_login',{}) }}">Вход</a>
