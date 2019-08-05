@@ -3,8 +3,16 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <style>
+            .btn-group{
+                padding: 20px;
+            }
+        </style>
+        {% block stylesheets %}
+
+        {% endblock %}
     </head>
     <body>
 
@@ -30,15 +38,19 @@
                             <a type="button" href="{{  path('device_list',{}) }}" class="btn btn-primary">Главная</a>
                             <a type="button" class="btn btn-primary">Поддержка</a>
                             <a type="button" class="btn btn-primary">Контакты</a>
+                            {% if is_granted('ROLE_ADMIN_USER')%}
+                                <a type="button" href="{{  path('create_device',{}) }}" class="btn btn-primary">Добавить устройство</a>
+                            {% endif %}
+{#                            <p>Поиск:#}
+{#                                <input type="text" size="60">#}
+{#                            </p>#}
                         </div>
+
                     {% endblock %}
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-3 col-xs-12">
-                    {% block left_menu %}Left menu{% endblock %}
-                </div>
-                <div class="col-sm-9">
+                <div class="col-sm-12">
                     {% block body %}
 
                     {% endblock %}

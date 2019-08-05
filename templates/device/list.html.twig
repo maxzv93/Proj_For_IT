@@ -4,24 +4,40 @@
 
 {% block body %}
     <div class="row">
-    {% for device in devices %}
-
-            <div class="col-sm-4">
-                <div class="card" style="width: 18rem;">
-                    <img src="{{ device.RefPicture }}" class="card-img-top" alt="">
-                    <div class="card-body">
-                        <h1></h1>
-                        <h5 class="card-title"> {{ device.Phone }}</h5>
-                        <p class="card-text">Цена: {{ device.Price }}</p>
-                        <a href="{{ path('device_show',{'device' :device.id}) }}" class="btn btn-primary">Больше информаии
-                            о {{ device.Phone }} {{ device.Model }}</a>
-                        {% if is_granted('ROLE_ADMIN_USER') %}
-                            <a href="{{ path('device_edit',{'id' :device.id}) }}" class="card-link">Редактировать</a>
-                        {% endif %}
-                    </div>
-                </div>
+            <div class="col-sm-3 col-xs-12">
+                {% block left_menu %}<h1>Фильтр</h1>
+                    {{ form(form) }}
+                    <div>{{ data }}</div>
+{#                    <div class="list-group" id="list-tab" role="tablist">#}
+{#                        <div><b>Производитель</b></div>#}
+{#                        <input type="text" size="40">#}
+{#                        <div><b>Цена</b></div>#}
+{#                        <div>Минимальная</div>#}
+{#                        <input type="text" size="40">#}
+{#                        <div>Максимальная</div>#}
+{#                        <input type="text" size="40">#}
+{#                    </div>#}
+                {% endblock %}
             </div>
+            {% for device in devices %}
+                {% if device.isDelete == false %}
+                    <div class="col-sm-3">
+                        <div class="card" style="width: 16rem;">
+                            <img src="{{ device.RefPicture }}" class="card-img-top" alt="">
+                            <div class="card-body">
+                                <h1></h1>
+                                <h5 class="card-title"> {{ device.Phone }}</h5>
+                                <p class="card-text">Цена: {{ device.Price }}</p>
+                                <a href="{{ path('device_show',{'device' :device.id}) }}" class="btn btn-primary">Больше информаии
+                                    о {{ device.Phone }} {{ device.Model }}</a>
+                                {% if is_granted('ROLE_ADMIN_USER') %}
+                                    <a href="{{ path('device_edit',{'id' :device.id}) }}" class="card-link">Редактировать</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
 
-    {% endfor %}
     </div>
 {% endblock %}

@@ -51,6 +51,11 @@ class Device
      */
     private $RefPicture;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isDelete;
+
 
 
     public function getId(): ?int
@@ -138,6 +143,18 @@ class Device
     public function setRefPicture(?string $RefPicture): self
     {
         $this->RefPicture = $RefPicture;
+
+        return $this;
+    }
+
+    public function getIsDelete(): ?bool
+    {
+        return $this->isDelete;
+    }
+
+    public function setIsDelete(?bool $isDelete): self
+    {
+        $this->isDelete = $isDelete;
 
         return $this;
     }

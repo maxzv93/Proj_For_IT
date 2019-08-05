@@ -22,6 +22,7 @@ class RegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
+                'label' => 'Пароль',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Введите пароль',
@@ -36,9 +37,10 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
+                'label' => 'Принять соглашение',
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Вам следует согласиться с нашими условиями',
                     ]),
                 ],
             ])

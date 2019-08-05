@@ -37,4 +37,5 @@ security:
          - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/deviceList, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/device/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/*, roles: [IS_AUTHENTICATED_FULLY] }

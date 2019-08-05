@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Device;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -118,6 +119,25 @@ class DeviceController extends AbstractController
      */
     public function show(Device $device)
     {
+//        $device = new Device();
+//        $form = $this
+//            ->createFormBuilder($device)
+//            ->add('Phone', TextType::class,
+//                ['required' => true,
+//                    'label' => 'Марка',
+//                    'attr' => [
+//                        'placeholder' => 'e.g. SAMSUNG'
+//                    ]
+//                ])
+//            ->add('save', SubmitType::class, [
+//                'label' => "Сохранить"
+//            ])
+//            ->getForm();
+//        $form->handleRequest($request);
+//            ->add('find', SubmitType::class, [
+//                'label' => "Поиск"
+//            ])
+//            ->getForm();
 //        $device = $this->getDoctrine()
 //            ->getRepository(Device::class)
 //            ->find($id);
@@ -139,7 +159,8 @@ class DeviceController extends AbstractController
         // or render a template
         // in the template, print things with {{ product.name }}
         return $this->render('device/show.html.twig', [
-            'device' => $device
+            'device' => $device//,
+//            "form" => $form->createView()
 //            'phone' => $phone,
 //            'model' => $model,
 //            'display' => $display,
@@ -227,12 +248,20 @@ class DeviceController extends AbstractController
                         'placeholder' => 'http//...../'
                     ]
                 ])
+            ->add('isDelete', CheckboxType::class,
+                ['required' => false,
+                    'label' => 'Удалить',
+                ])
             ->add('save', SubmitType::class, [
                 'label' => "Сохранить"
             ])
             ->getForm();
 
         $form->handleRequest($request);
+//        if ($device->getIsDelete() == true)
+//        {
+//            return $this->json($device->getIsDelete());
+//        }
 
         if ($form->isSubmitted() and $form->isValid()) {
             $manager = $this->getDoctrine()->getManager();
@@ -245,20 +274,61 @@ class DeviceController extends AbstractController
 
         return $this->render(
             'device/edit.html.twig',
-            ["form" => $form->createView()]);
+            [
+                "form" => $form->createView()//,
+//             "device" => $device->getIsDelete()
+            ]);
     }
 
     /**
      * @Route("/deviceList", name="device_list")
+     * @param Request $request
      */
-    public function deviceList()
+    public function deviceList(Request $request)
     {
-        $repository = $this->getDoctrine()
-            ->getRepository(Device::class);
-        $devices = $repository->findAll();
+
+        $defaultData = ['message' => 'your message here'];
+        $form = $this->createFormBuilder($defaultData)
+            ->add('Phone', TextType::class,[
+                'required' => false])
+            ->add('send', SubmitType::class)
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // data is an array with "name", "email", and "message" keys
+//            dd($form->getData());
+            $data = $form->getData();
+            $data = $data['Phone'];
+
+            $repository = $this->getDoctrine()
+                ->getRepository(Device::class);
+            $devices = $repository->findBy(['Phone' => $data]);
+        }
+        else{
+            $repository = $this->getDoctrine()
+                ->getRepository(Device::class);
+            $devices = $repository->findAll();
+            $data = "";
+        }
+
+//        $data = $form->getData();
+//
+//        $form->handleRequest($request);
+//        $request->request->get('Phone');
+//        dd($data);
+
+
+//        $repository = $this->getDoctrine()
+//            ->getRepository(Device::class);
+//        $devices = $repository->findAll();
         return $this->render(
             'device/list.html.twig',
-            ["devices" => $devices]
+            ["devices" => $devices,
+             "form" => $form->createView(),
+             "data" => $data
+            ]
         );
     }
 
@@ -269,6 +339,7 @@ class DeviceController extends AbstractController
     {
 
     }
+
 
 
 }
