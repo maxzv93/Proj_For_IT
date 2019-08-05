@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Наши контакты{% endblock %}
+
+{% block body %}
+    <div>Наши телефоны:</div><br>
+    <div>Наш офис в г. Москва<br>
+        Расположен в Бизнес-центре «XXX» по адресу<br>
+
+        {{ information.address1 }}<br>
+        {{ information.address2 }}<br>
+
+        Email: {{ information.Email1 }}<br>
+        Email: {{ information.Email2 }}<br>
+
+        Тел: {{ information.Phone1 }}<br>
+        Тел: {{ information.Phone2 }}<br>
+        Тел: {{ information.Phone3 }}<br>
+        ОГРН  </div><br>
+
+{% endblock %}
+

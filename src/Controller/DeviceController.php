@@ -345,11 +345,14 @@ class DeviceController extends AbstractController
     }
 
     /**
-     * @Route("/device/edit/{id}/delete", requirements={"id"="\d+"}, name="device_delete")
+     * @Route("/basket", name="device_basket")
      */
-    public function deleteDevice($id)
+    public function basket()
     {
-
+        return $this->render(
+            'device/basket.html.twig',
+            []
+        );
     }
 
 

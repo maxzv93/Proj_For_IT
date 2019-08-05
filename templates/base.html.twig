@@ -34,8 +34,8 @@
                     {% block header %}
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <a type="button" href="{{  path('device_list',{}) }}" class="btn btn-primary">Главная</a>
-                            <a type="button" class="btn btn-primary">Поддержка</a>
-                            <a type="button" class="btn btn-primary">Контакты</a>
+                            <a type="button" href="{{ path('device_basket',{}) }}" class="btn btn-primary">Корзина</a>
+                            <a type="button" href="{{ path('contacts_information',{'information' :1}) }}" class="btn btn-primary">Контакты</a>
                             {% if is_granted('ROLE_ADMIN_USER')%}
                                 <a type="button" href="{{  path('create_device',{}) }}" class="btn btn-primary">Добавить устройство</a>
                             {% endif %}
