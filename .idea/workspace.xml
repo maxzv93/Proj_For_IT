@@ -9,16 +9,6 @@
       <change afterPath="$PROJECT_DIR$/../../Max/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DeviceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DeviceController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Device.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Device.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190805051329.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/device/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/device/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/device/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/device/list.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/device/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/device/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Zuev_PHP-master/Registration_page/main_for_bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Zuev_PHP-master/Registration_page/main_for_bootstrap.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Zuev_PHP-master/Registration_page/page_with_bootstrap.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Zuev_PHP-master/Registration_page/page_with_bootstrap.html" afterDir="false" />
     </list>
@@ -408,12 +398,12 @@
       <workItem from="1564635833903" duration="10282000" />
       <workItem from="1564724135667" duration="13481000" />
       <workItem from="1564758121719" duration="11148000" />
-      <workItem from="1564981689846" duration="19962000" />
+      <workItem from="1564981689846" duration="21532000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60499000" />
+    <option name="totallyTimeSpent" value="62069000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1272" y="-8" width="1296" height="1040" extended-state="6" />
