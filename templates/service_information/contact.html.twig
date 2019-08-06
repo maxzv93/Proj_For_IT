@@ -6,17 +6,23 @@
     <div>Наши телефоны:</div><br>
     <div>Наш офис в г. Москва<br>
         Расположен в Бизнес-центре «XXX» по адресу<br>
+        {% if information.address1 != "" or information.address2 != ""%}
+            {{ information.address1 }}<br>
+            {{ information.address2 }}<br>
 
-        {{ information.address1 }}<br>
-        {{ information.address2 }}<br>
+            Email: {{ information.Email1 }}<br>
+            Email: {{ information.Email2 }}<br>
 
-        Email: {{ information.Email1 }}<br>
-        Email: {{ information.Email2 }}<br>
+            Тел: {{ information.Phone1 }}<br>
+            Тел: {{ information.Phone2 }}<br>
+            Тел: {{ information.Phone3 }}<br>
+        {%  endif %}
 
-        Тел: {{ information.Phone1 }}<br>
-        Тел: {{ information.Phone2 }}<br>
-        Тел: {{ information.Phone3 }}<br>
+
         ОГРН  </div><br>
+    {% if is_granted('ROLE_ADMIN_USER') %}
+        <a href="{{ path('contacts_update',{'id' :1}) }}">Редактировать контактные данные</a>
+    {% endif %}
 
 {% endblock %}
 

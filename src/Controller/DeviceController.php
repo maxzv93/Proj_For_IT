@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Device;
+use App\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -155,6 +156,11 @@ class DeviceController extends AbstractController
 //        $memory_size = $device->getMemorySize();
 
         //return new Response('Информация о продукте '.$device->getModel());
+
+
+
+
+
 
         // or render a template
         // in the template, print things with {{ product.name }}
@@ -343,18 +349,5 @@ class DeviceController extends AbstractController
             ]
         );
     }
-
-    /**
-     * @Route("/basket", name="device_basket")
-     */
-    public function basket()
-    {
-        return $this->render(
-            'device/basket.html.twig',
-            []
-        );
-    }
-
-
 
 }

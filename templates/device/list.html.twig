@@ -33,11 +33,12 @@
                                 {% if is_granted('ROLE_ADMIN_USER') %}
                                     <a href="{{ path('device_edit',{'id' :device.id}) }}" class="card-link">Редактировать</a>
                                 {% endif %}
+                                <a href="{{ path('device_set_favourite',{'id' :device.id}) }}" class="card-link">Добавить в избранное</a>
                             </div>
                         </div>
                     </div>
                 {% endif %}
             {% endfor %}
-
+   
     </div>
 {% endblock %}

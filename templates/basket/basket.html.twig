@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block body %}
+    <div>Товары в корзине</div><br>
+    <div class="row">
+    {% for device in devices %}
+{#        {% if device.isDelete == false %}#}
+            <div class="col-sm-3">
+                <div class="card" style="width: 16rem;">
+                    <img src="{{ device.ref_picture }}" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h1></h1>
+                        <h5 class="card-title"> {{ device.phone }}</h5>
+                        <p class="card-text">Цена: {{ device.price }}</p>
+                        <a href="{{ path('device_show',{'device' :device.id}) }}" class="btn btn-primary">Больше информаии
+                            о {{ device.phone }} {{ device.model }}</a>
+                        {% if is_granted('ROLE_ADMIN_USER') %}
+                            <a href="{{ path('device_edit',{'id' :device.id}) }}" class="card-link">Редактировать</a>
+                        {% endif %}
+                        <br>
+                        <a class="card-text">Убрать из корзины</a>
+                    </div>
+                </div>
+            </div>
+{#        {% endif %}#}
+    {% endfor %}
+    </div>
+{% endblock %}
+

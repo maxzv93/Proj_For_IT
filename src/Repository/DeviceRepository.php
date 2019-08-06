@@ -87,7 +87,34 @@ class DeviceRepository extends ServiceEntityRepository
     }
 
 
+    public function findAllItemsUser($userid): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
 
+        $sql = 'SELECT * FROM device p
+                INNER JOIN device_user 
+                ON device_id = p.id 
+                where user_id = :userid';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['userid' => $userid]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll();
+    }
+
+    public function setAllItemsUser($userid,$itemid): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'INSERT INTO device_user VALUES (:itemid, :userid)';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['itemid' => $itemid,'userid' => $userid]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll();
+    }
 
 
 

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -55,6 +57,16 @@ class Device
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $isDelete;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="devices")
+     */
+    private $ShopUser;
+
+    public function __construct()
+    {
+        $this->ShopUser = new ArrayCollection();
+    }
 
 
 
@@ -155,6 +167,32 @@ class Device
     public function setIsDelete(?bool $isDelete): self
     {
         $this->isDelete = $isDelete;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getShopUser(): Collection
+    {
+        return $this->ShopUser;
+    }
+
+    public function addShopUser(User $shopUser): self
+    {
+        if (!$this->ShopUser->contains($shopUser)) {
+            $this->ShopUser[] = $shopUser;
+        }
+
+        return $this;
+    }
+
+    public function removeShopUser(User $shopUser): self
+    {
+        if ($this->ShopUser->contains($shopUser)) {
+            $this->ShopUser->removeElement($shopUser);
+        }
 
         return $this;
     }

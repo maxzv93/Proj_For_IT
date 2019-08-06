@@ -93,8 +93,8 @@ class ServiceInformationController extends AbstractController
     {
         $information = new ServiceInformation();
 
-        $information->setPhone1('8 905 433 456 3');
-        $information->setPhone2('8 905 433 456 3');
+        $information->setPhone1('8 905 433 456 1');
+        $information->setPhone2('8 905 433 456 2');
         $information->setPhone3('8 905 433 456 3');
         $information->setEmail1('info@mail.ru');
         $information->setEmail2('info2@mail.ru');
@@ -104,9 +104,7 @@ class ServiceInformationController extends AbstractController
         $manager->persist($information);
         $manager->flush();
 
-        return $this->redirectToRoute('contacts_information', [
-            'contacts_information' => $information->getId()
-        ]);
+        return $this->redirectToRoute('device_list');
     }
 
 
@@ -131,9 +129,15 @@ class ServiceInformationController extends AbstractController
      */
         public function showServiceInformation(ServiceInformation $information)
     {
-        return $this->render(
-            'service_information/contact.html.twig',
-            ['information' => $information
-            ]);
+        if($information->getId()==1) {
+            return $this->render(
+                'service_information/contact.html.twig',
+                ['information' => $information
+                ]);
+        }
+        else
+        {
+            return $this->redirectToRoute('device_list');
+        }
     }
 }
