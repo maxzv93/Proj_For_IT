@@ -8,17 +8,9 @@
       <change afterPath="$PROJECT_DIR$/../../Max/.idea/php.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../Max/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6088fb5f-0a22-4ec5-8128-332e329e49ee.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/6088fb5f-0a22-4ec5-8128-332e329e49ee.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DeviceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DeviceController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ServiceInformationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ServiceInformationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Device.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Device.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190805140819.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/BasketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BasketController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/DeviceRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/DeviceRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/device/basket.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/device/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/device/list.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/service_information/contact.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/service_information/contact.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/basket/basket.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/basket/basket.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Zuev_PHP-master/Registration_page/main_for_bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Zuev_PHP-master/Registration_page/main_for_bootstrap.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Zuev_PHP-master/Registration_page/page_with_bootstrap.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Zuev_PHP-master/Registration_page/page_with_bootstrap.html" afterDir="false" />
     </list>
@@ -107,17 +99,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/DeviceController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1160">
+            <state relative-caret-position="200">
               <caret line="166" column="43" selection-start-line="166" selection-start-column="43" selection-end-line="166" selection-end-column="43" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Repository/DeviceRepository.php">
+        <entry file="file://$PROJECT_DIR$/templates/basket/basket.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="556">
-              <caret line="106" column="5" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
+            <state relative-caret-position="402">
+              <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/BasketController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="256">
+              <caret line="86" selection-start-line="86" selection-end-line="86" />
               <folding>
                 <element signature="e#34#56#0#PHP" expanded="true" />
               </folding>
@@ -126,18 +127,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Controller/BasketController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="60" selection-start-line="60" selection-end-line="60" />
-              <folding>
-                <element signature="e#34#56#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="das://6088fb5f-0a22-4ec5-8128-332e329e49ee/schema/main/table/device">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
@@ -149,12 +138,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="das://6088fb5f-0a22-4ec5-8128-332e329e49ee/schema/main/table/user">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6088fb5f-0a22-4ec5-8128-332e329e49ee/console.sql">
+          <provider selected="true" editor-type-id="text-editor">
             <state>
-              <filtering enabled="true">
-                <filter text="" />
-              </filtering>
+              <caret selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -195,11 +182,11 @@
         <option value="$PROJECT_DIR$/templates/device/show.html.twig" />
         <option value="$PROJECT_DIR$/templates/basket/index.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/DeviceController.php" />
+        <option value="$PROJECT_DIR$/templates/device/list.html.twig" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
-        <option value="$PROJECT_DIR$/templates/basket/basket.html.twig" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6088fb5f-0a22-4ec5-8128-332e329e49ee/console.sql" />
         <option value="$PROJECT_DIR$/src/Repository/DeviceRepository.php" />
-        <option value="$PROJECT_DIR$/templates/device/list.html.twig" />
+        <option value="$PROJECT_DIR$/templates/basket/basket.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/BasketController.php" />
       </list>
     </option>
@@ -470,13 +457,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94493000" />
+    <option name="totallyTimeSpent" value="96479000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1272" y="-8" width="1296" height="1040" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1828479" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12459547" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="SQL Generator" order="0" weight="0.32929516" />
@@ -496,7 +483,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.197411" />
+      <window_info active="true" anchor="right" id="Database" order="3" visible="true" weight="0.1262136" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -795,22 +782,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/basket/basket.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://6088fb5f-0a22-4ec5-8128-332e329e49ee/schema/main/table/user">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true">
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/Device.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="302">
@@ -828,14 +799,24 @@
     <entry file="file://$PROJECT_DIR$/templates/device/create.html.twig">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6088fb5f-0a22-4ec5-8128-332e329e49ee/console.sql">
+    <entry file="file://$PROJECT_DIR$/src/Controller/ServiceInformationController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="8" selection-end-column="38" />
+        <state relative-caret-position="259">
+          <caret line="96" column="19" selection-start-line="93" selection-start-column="8" selection-end-line="104" selection-end-column="26" />
+          <folding>
+            <element signature="e#34#68#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="das://6088fb5f-0a22-4ec5-8128-332e329e49ee/schema/main/table/device">
+    <entry file="file://$PROJECT_DIR$/templates/device/list.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://6088fb5f-0a22-4ec5-8128-332e329e49ee/schema/main/table/user">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true">
@@ -844,12 +825,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/ServiceInformationController.php">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6088fb5f-0a22-4ec5-8128-332e329e49ee/console.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="96" column="19" selection-start-line="93" selection-start-column="8" selection-end-line="104" selection-end-column="26" />
+        <state>
+          <caret selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/DeviceController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="166" column="43" selection-start-line="166" selection-start-column="43" selection-end-line="166" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/DeviceRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="478">
+          <caret line="128" column="33" selection-start-line="128" selection-start-column="33" selection-end-line="128" selection-end-column="33" />
           <folding>
-            <element signature="e#34#68#0#PHP" expanded="true" />
+            <element signature="e#34#56#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -863,37 +858,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/device/list.html.twig">
+    <entry file="file://$PROJECT_DIR$/templates/basket/basket.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/DeviceRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="556">
-          <caret line="106" column="5" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
-          <folding>
-            <element signature="e#34#56#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/DeviceController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1160">
-          <caret line="166" column="43" selection-start-line="166" selection-start-column="43" selection-end-line="166" selection-end-column="43" />
+        <state relative-caret-position="402">
+          <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/BasketController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="60" selection-start-line="60" selection-end-line="60" />
+        <state relative-caret-position="256">
+          <caret line="86" selection-start-line="86" selection-end-line="86" />
           <folding>
             <element signature="e#34#56#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://6088fb5f-0a22-4ec5-8128-332e329e49ee/schema/main/table/device">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true">
+            <filter text="" />
+          </filtering>
         </state>
       </provider>
     </entry>

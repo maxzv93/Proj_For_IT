@@ -116,6 +116,19 @@ class DeviceRepository extends ServiceEntityRepository
         return $stmt->fetchAll();
     }
 
+    public function deleteItemsUser($userid,$itemid): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'DELETE FROM device_user WHERE device_id = :itemid AND user_id = :userid';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['itemid' => $itemid,'userid' => $userid]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll();
+    }
+
 
 
 

@@ -20,7 +20,7 @@
                             <a href="{{ path('device_edit',{'id' :device.id}) }}" class="card-link">Редактировать</a>
                         {% endif %}
                         <br>
-                        <a class="card-text">Убрать из корзины</a>
+                        <a href="{{ path('device_delete_favourite',{'id' :device.id}) }}" class="card-text">Убрать из корзины</a>
                     </div>
                 </div>
             </div>

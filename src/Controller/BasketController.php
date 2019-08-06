@@ -70,6 +70,29 @@ public function setToFavourite(Device $device)//User $user, Device $device)
     );
 }
 
+
+    /**
+     * @Route("/deleteFromBasket/{id}", requirements={"id"="\d+"}, name="device_delete_favourite")
+     * @param Device $device
+     * @return Response
+     */
+    public function deleteToFavourite(Device $device)//User $user, Device $device)
+    {
+
+        $id = $this->getUser()->getId();
+        $itemid = $device->getId();
+        $data = $this->getDoctrine()
+            ->getRepository(Device::class)
+            ->deleteItemsUser($id,$itemid);
+
+
+        return $this->render(
+            'basket/basket.html.twig'
+            ,
+            ["devices" => $data]
+        );
+    }
+
 }
 //
 //        $query = $entityManager->createQuery(
