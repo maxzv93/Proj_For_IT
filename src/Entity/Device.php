@@ -63,9 +63,15 @@ class Device
      */
     private $ShopUser;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CommentMessage", mappedBy="item_id")
+     */
+    private $commentMessages;
+
     public function __construct()
     {
         $this->ShopUser = new ArrayCollection();
+        $this->commentMessages = new ArrayCollection();
     }
 
 
@@ -192,6 +198,37 @@ class Device
     {
         if ($this->ShopUser->contains($shopUser)) {
             $this->ShopUser->removeElement($shopUser);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CommentMessage[]
+     */
+    public function getCommentMessages(): Collection
+    {
+        return $this->commentMessages;
+    }
+
+    public function addCommentMessage(CommentMessage $commentMessage): self
+    {
+        if (!$this->commentMessages->contains($commentMessage)) {
+            $this->commentMessages[] = $commentMessage;
+            $commentMessage->setItemId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentMessage(CommentMessage $commentMessage): self
+    {
+        if ($this->commentMessages->contains($commentMessage)) {
+            $this->commentMessages->removeElement($commentMessage);
+            // set the owning side to null (unless already changed)
+            if ($commentMessage->getItemId() === $this) {
+                $commentMessage->setItemId(null);
+            }
         }
 
         return $this;

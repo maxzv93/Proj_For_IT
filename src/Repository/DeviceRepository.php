@@ -36,25 +36,82 @@ class DeviceRepository extends ServiceEntityRepository
         else
             $MaxPrice = $data['MaxPrice'];
 
-        if($data['MinVol']=="")
-            $MinVol = 0;
-        else
-            $MinVol = $data['MinVol'];
-        if($data['MaxVol']=="")
-            $MaxVol = 1000000000;
-        else
+        if($data['MinVol']!="" && $data['MaxVol']!="")
+        {
             $MaxVol = $data['MaxVol'];
-
-
-
+            $MinVol = $data['MinVol'];
+        }
+        elseif($data['MinVol']=="" && $data['MaxVol']!="")
+        {
+            $MinVol = 0;
+            $MaxVol = $data['MaxVol'];
+        }
+        elseif($data['MinVol']!="" && $data['MaxVol']=="")
+        {
+            $MinVol = $data['MinVol'];
+            $MaxVol = 1000000000;
+        }
+        elseif($data['MaxVol']=="" && $data['MinVol']==""){
+            $MaxVol = "";
+            $MinVol = "";
+        }
 
         $entityManager = $this->getEntityManager();
 
-
-
-
-
-        if($data['Phone']=="")
+        if($data['Phone']!="" && ($data['MaxVol']!="" || $data['MinVol']!="")
+            && ($data['MaxPrice']!="" || $data['MinPrice']!=""))
+        {
+            $query = $entityManager->createQuery(
+                'SELECT p
+                FROM App\Entity\Device p
+                WHERE p.Phone = :Phone 
+                AND p.Price >= :MinPrice
+                AND p.Price <= :MaxPrice
+                AND p.MemorySize >= :MinVol
+                AND p.MemorySize <= :MaxVol'
+            )->setParameters(['Phone' => $Phone, 'MinPrice' => $MinPrice, 'MaxPrice' => $MaxPrice,
+                'MaxVol' => $MaxVol, 'MinVol' => $MinVol]);
+        }
+        elseif($data['Phone']!="" && ($data['MaxPrice']!="" || $data['MinPrice']!=""))
+        {
+            $query = $entityManager->createQuery(
+                'SELECT p
+                FROM App\Entity\Device p
+                WHERE p.Phone = :Phone
+                AND p.Price >= :MinPrice
+                AND p.Price <= :MaxPrice'
+            )->setParameters(['Phone' => $Phone, 'MinPrice' => $MinPrice, 'MaxPrice' => $MaxPrice]);
+        }
+        elseif($data['Phone']!="" && ($data['MaxVol']!="" || $data['MinVol']!=""))
+        {
+            $query = $entityManager->createQuery(
+                'SELECT p
+                FROM App\Entity\Device p
+                WHERE p.Phone = :Phone
+                AND p.MemorySize >= :MinVol
+                AND p.MemorySize <= :MaxVol'
+            )->setParameters(['Phone' => $Phone, 'MinVol' => $MinVol, 'MaxVol' => $MaxVol]);
+        }
+        elseif($data['Phone']=="" && ($data['MaxPrice']!="" || $data['MinPrice']!=""))
+        {
+            $query = $entityManager->createQuery(
+                'SELECT p
+                FROM App\Entity\Device p
+                WHERE p.Price >= :MinPrice
+                AND p.Price <= :MaxPrice'
+            )->setParameters([ 'MinPrice' => $MinPrice, 'MaxPrice' => $MaxPrice ]);
+        }
+        elseif($data['Phone']=="" && ($data['MaxVol']!="" || $data['MinVol']!=""))
+        {
+            $query = $entityManager->createQuery(
+                'SELECT p
+                FROM App\Entity\Device p
+                WHERE  p.MemorySize >= :MinVol
+                AND p.MemorySize <= :MaxVol'
+            )->setParameters([ 'MaxVol' => $MaxVol, 'MinVol' => $MinVol]);
+        }
+        elseif($data['Phone']=="" && ($data['MaxVol']!="" || $data['MinVol']!="")
+            && ($data['MaxPrice']!="" || $data['MinPrice']!=""))
         {
             $query = $entityManager->createQuery(
                 'SELECT p
@@ -63,7 +120,7 @@ class DeviceRepository extends ServiceEntityRepository
                 AND p.Price <= :MaxPrice
                 AND p.MemorySize >= :MinVol
                 AND p.MemorySize <= :MaxVol'
-            )->setParameters([ 'MinPrice' => $MinPrice, 'MaxPrice' => $MaxPrice,
+            )->setParameters(['MinPrice' => $MinPrice, 'MaxPrice' => $MaxPrice,
                 'MaxVol' => $MaxVol, 'MinVol' => $MinVol]);
         }
         else
@@ -71,17 +128,9 @@ class DeviceRepository extends ServiceEntityRepository
             $query = $entityManager->createQuery(
                 'SELECT p
                 FROM App\Entity\Device p
-                WHERE p.Phone = :Phone
-                AND p.Price >= :MinPrice
-                AND p.Price <= :MaxPrice
-                AND p.MemorySize >= :MinVol
-                AND p.MemorySize <= :MaxVol'
-            )->setParameters(['Phone' => $Phone, 'MinPrice' => $MinPrice, 'MaxPrice' => $MaxPrice,
-                'MaxVol' => $MaxVol, 'MinVol' => $MinVol]);
+                WHERE p.Phone = :Phone'
+            )->setParameters(['Phone' => $Phone]);
         }
-
-
-
         // returns an array of Product objects
         return $query->execute();
     }

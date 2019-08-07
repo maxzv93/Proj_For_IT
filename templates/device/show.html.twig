@@ -17,4 +17,17 @@
     <hr>
     <h2>Цена : {{ device.Price }}</h2>
 </div>
+
+    <div>
+        <h1> Отзывы </h1>
+    </div>
+    {% for comments in comment %}
+                <h4> Aвтор: {{ comments.author }}, время  </h4>
+                <h1>{{ comments.message }}</h1>
+    {% endfor %}
+
+    <div>
+        {{ form(form) }}
+    </div>
+
 {% endblock %}

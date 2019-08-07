@@ -18,7 +18,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-9"></div>
+                <div class="col-lg-9 "></div>
                 <div class="col-lg-3">
                     {% block top_header %}
                         {% if is_granted('ROLE_USER') %}
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-sm-12 col-md-4">
                     {% block header %}
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <a type="button" href="{{  path('device_list',{}) }}" class="btn btn-primary">Главная</a>

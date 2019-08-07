@@ -6,8 +6,8 @@
     <div>Товары в корзине</div><br>
     <div class="row">
     {% for device in devices %}
-{#        {% if device.isDelete == false %}#}
-            <div class="col-sm-3">
+
+            <div class="col-sm-3 col-md-4">
                 <div class="card" style="width: 16rem;">
                     <img src="{{ device.ref_picture }}" class="card-img-top" alt="">
                     <div class="card-body">
@@ -24,8 +24,15 @@
                     </div>
                 </div>
             </div>
-{#        {% endif %}#}
+
     {% endfor %}
     </div>
+{% endblock %}
+
+{% block footer %}
+    <br>
+<div class="col-sm-9">
+    <a href="" class="btn btn-primary"> Купить выбранные товары </a>
+</div>
 {% endblock %}
 

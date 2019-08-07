@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\CommentMessage;
 use App\Entity\Device;
 use App\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -20,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DeviceController extends AbstractController
 {
     /**
-     * @Route("/", name="device")
+     * @Route("", name="device")
      */
     public function index()
     {
@@ -115,64 +116,57 @@ class DeviceController extends AbstractController
 
     /**
      * @Route("/device/{device}", requirements={"devices"="\d+"}, name="device_show")
+     * @param Request $request
      * @param Device $device
      * @return Response
+     * @throws \Exception
      */
-    public function show(Device $device)
+    public function show(Request $request, Device $device)
     {
-//        $device = new Device();
-//        $form = $this
-//            ->createFormBuilder($device)
-//            ->add('Phone', TextType::class,
-//                ['required' => true,
-//                    'label' => 'Марка',
-//                    'attr' => [
-//                        'placeholder' => 'e.g. SAMSUNG'
-//                    ]
-//                ])
-//            ->add('save', SubmitType::class, [
-//                'label' => "Сохранить"
-//            ])
-//            ->getForm();
-//        $form->handleRequest($request);
-//            ->add('find', SubmitType::class, [
-//                'label' => "Поиск"
-//            ])
-//            ->getForm();
-//        $device = $this->getDoctrine()
-//            ->getRepository(Device::class)
-//            ->find($id);
-//
-//        if (!$device) {
-//            throw $this->createNotFoundException(
-//                'No product found for id ' . $id
-//            );
-//        }
-//        $phone = $device->getPhone();
-//        $model = $device->getModel();
-//        $producer = $device->getProducer();
-//        $price = $device->getPrice();
-//        $display = $device->getDisplay();
-//        $memory_size = $device->getMemorySize();
-
-        //return new Response('Информация о продукте '.$device->getModel());
-
-
-
-
-
-
         // or render a template
         // in the template, print things with {{ product.name }}
+        $repository = $this->getDoctrine()
+            ->getRepository(CommentMessage::class);
+        $comment = $repository->findBy(
+            ['item_id' => $device->getId()]
+        );
+
+
+        $message = new CommentMessage();
+        $created_ad= new \DateTime();
+        $message->setItemId($device);
+        $message->setCreatedAt($created_ad);
+        $message->setAuthor($this->getUser()->getEmail());
+
+        $form = $this
+            ->createFormBuilder($message)
+            ->add('message', TextType::class,
+                ['required' => true,
+                    'label' => 'Новое сообщение',
+                    'attr' => [
+                        'placeholder' => 'Сообщеие ... '
+                    ]
+                ])
+            ->add('save', SubmitType::class, [
+                'label' => "Отправить"
+            ])
+            ->getForm();
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() and $form->isValid()) {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($message);
+            $manager->flush();
+//            dd($device->getId());
+            return $this->redirectToRoute('device_show', ['device' => $device->getId()]);
+        }
+
         return $this->render('device/show.html.twig', [
-            'device' => $device//,
-//            "form" => $form->createView()
-//            'phone' => $phone,
-//            'model' => $model,
-//            'display' => $display,
-//            'price' => $price,
-//            'memory_size' => $memory_size,
-//            'producer' => $producer
+            'device' => $device,
+            'comment' => $comment,
+            "form" => $form->createView()
         ]);
     }
 
@@ -286,9 +280,9 @@ class DeviceController extends AbstractController
             ]);
     }
 
+
     /**
      * @Route("/deviceList", name="device_list")
-     * @param Request $request
      */
     public function deviceList(Request $request)
     {
@@ -344,10 +338,35 @@ class DeviceController extends AbstractController
 //        $devices = $repository->findAll();
         return $this->render(
             'device/list.html.twig',
-            ["devices" => $devices,
-             "form" => $form->createView()
+            [
+                "devices" => $devices,
+                "form" => $form->createView()
             ]
         );
+    }
+
+
+    /**
+     * @Route("/comment/create/{id}", requirements={"id"="\d+"}, name="create_comment")
+     * @param Device $device
+     * @return Response
+     * @throws \Exception
+     */
+    public function createComment(Device $device)
+    {
+        $created_ad= new \DateTime();
+        $message= new CommentMessage();
+        $message->setItemId($device); // вставить item_id
+        $message->setCreatedAt($created_ad);
+        $message->setMessage("hello World This IS DEVICE");
+        $message->setAuthor($this->getUser()->getEmail());
+
+        $manager = $this->getDoctrine()->getManager();
+        $manager->persist($message);
+        $manager->flush();
+
+        return new Response("Создан новое сообщение с id: ");
+
     }
 
 }
