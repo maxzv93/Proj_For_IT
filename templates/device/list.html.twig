@@ -28,12 +28,11 @@
                                 <h1></h1>
                                 <h5 class="card-title"> {{ device.Phone }}</h5>
                                 <p class="card-text">Цена: {{ device.Price }}</p>
-                                <a href="{{ path('device_show',{'device' :device.id}) }}" class="btn btn-primary">Больше информаии
-                                    о {{ device.Phone }} {{ device.Model }}</a>
+                                <a href="{{ path('device_show',{'device' :device.id}) }}" class="btn btn-primary">Подробнее </a><br>
                                 {% if is_granted('ROLE_ADMIN_USER') %}
                                     <a href="{{ path('device_edit',{'id' :device.id}) }}" class="card-link">Редактировать</a>
                                 {% endif %}
-                                <a href="{{ path('device_set_favourite',{'id' :device.id}) }}" class="card-link">Добавить в избранное</a>
+                                <a href="{{ path('device_set_favourite',{'id' :device.id}) }}" class="card-link">Добавить в корзину</a>
                             </div>
                         </div>
                     </div>

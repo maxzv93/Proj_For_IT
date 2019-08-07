@@ -180,7 +180,18 @@ class DeviceRepository extends ServiceEntityRepository
 
 
 
+    public function findAllPhone(): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
 
+        $sql = 'SELECT DISTINCT p.phone FROM device p';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll();
+    }
 
 
     // /**

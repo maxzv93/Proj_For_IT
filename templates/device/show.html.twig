@@ -22,7 +22,8 @@
         <h1> Отзывы </h1>
     </div>
     {% for comments in comment %}
-                <h4> Aвтор: {{ comments.author }}, время  </h4>
+                <h4> Aвтор: {{ comments.author }}, время
+                    {{ comments.getCreatedAt|date("F jS \y \\a\\t g:ia") }} </h4>
                 <h1>{{ comments.message }}</h1>
     {% endfor %}
 

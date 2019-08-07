@@ -8,6 +8,7 @@ use App\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -130,13 +131,19 @@ class DeviceController extends AbstractController
         $comment = $repository->findBy(
             ['item_id' => $device->getId()]
         );
+//                dd($comment->created_at());
 
-
+//        dd($comment);
+        $created_at= new \DateTime();
+        $created_at->modify('+3 hour');
         $message = new CommentMessage();
-        $created_ad= new \DateTime();
         $message->setItemId($device);
-        $message->setCreatedAt($created_ad);
-        $message->setAuthor($this->getUser()->getEmail());
+        $message->setCreatedAt($created_at);
+        if($this->isGranted('ROLE_USER')||$this->isGranted('ROLE_ADMIN_USER'))
+            $message->setAuthor($this->getUser()->getEmail());
+        else
+            $message->setAuthor('ANONYM');
+
 
         $form = $this
             ->createFormBuilder($message)
@@ -144,7 +151,7 @@ class DeviceController extends AbstractController
                 ['required' => true,
                     'label' => 'Новое сообщение',
                     'attr' => [
-                        'placeholder' => 'Сообщеие ... '
+                        'placeholder' => 'Текст сообщения ... '
                     ]
                 ])
             ->add('save', SubmitType::class, [
@@ -166,6 +173,7 @@ class DeviceController extends AbstractController
         return $this->render('device/show.html.twig', [
             'device' => $device,
             'comment' => $comment,
+            'createdAT' => 1,
             "form" => $form->createView()
         ]);
     }
@@ -286,10 +294,17 @@ class DeviceController extends AbstractController
      */
     public function deviceList(Request $request)
     {
-
+        $stmt= $this->getDoctrine()
+            ->getRepository(Device::class)->findAllPhone();
+//        dd($stmt[1]['phone']);
+            for($n=0; $n < count($stmt);$n++)
+            {
+                $maker[$stmt[$n]['phone']]=$stmt[$n]['phone'];
+            }
+//        dd($x);
         $defaultData = ['message' => 'your message here'];
         $form = $this->createFormBuilder($defaultData)
-            ->add('Phone', TextType::class,[
+            ->add('Phone', ChoiceType::class,['choices' => [$maker],
                 'required' => false,
                 'label' => 'Производитель'])
             ->add('MinVol', IntegerType::class,[
