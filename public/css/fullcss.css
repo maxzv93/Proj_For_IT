@@ -1,0 +1,124 @@
+.btn-group {
+    padding: 20px;
+}
+
+.btn-primary {
+
+    margin: 5px;
+}
+
+.leftM {
+    margin-left: 20px;
+    padding: 10px;
+    border: 4px double gray;
+}
+
+.find {
+    border-bottom: 4px solid darkgray;
+}
+
+.card {
+    margin: 20px;
+}
+
+.headpage {
+    text-align: center;
+}
+
+.inputbut {
+    margin: 20px;
+    text-align: center;
+}
+
+.foot {
+    margin-top: 20px;
+    padding: 20px;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+
+.inputfields {
+    margin: 40px;
+    text-align: center;
+}
+
+.inputfield {
+    margin: 20px;
+}
+
+
+/*contact.html.twig*/
+
+.titlecontact {
+    text-align: center;
+    margin: 10px;
+}
+
+.contacts {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif; /* Гарнитура текста */
+    font-size: 250%; /* Размер шрифта в процентах */
+}
+
+
+/*showbox*/
+.showbox{
+    margin-left: 40px;
+    margin-right: 40px;
+    border: 1px solid lightgrey;
+}
+
+.titleshowbox{
+    text-align: center;
+    margin: 20px;
+}
+
+.headcomments{
+    text-align: center;
+    margin: 20px;
+
+}
+.comments{
+    border: 3px double lightgrey;
+    /*border-radius: 1px;*/
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+.commentauthor, .commenttime{
+    float: left;
+    width: 50%;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+}
+
+.commenttime{
+    text-align: right;
+    /*border-bottom: 1px solid lightgrey;*/
+}
+
+.commentmessage{
+    /*margin: auto;*/
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 10px;
+    padding: 12px;
+    border: 10px outset lightgrey;
+    border-radius: 10px;
+}
+
+.registr{
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.ouritems{
+    text-align: center;
+}
+
+/*create and edit form*/
+.createform{
+    margin-left: 20%;
+    margin-right: 20%;
+}

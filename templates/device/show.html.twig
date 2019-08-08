@@ -4,31 +4,41 @@
 
 {% block body %}
 
-<div>
-    <h2>Телефон : {{ device.Phone }}</h2>
+<div class="titleshowbox"><h1> Описание товара </h1>
+</div>
+<div class="showbox">
+    <h2>Производитель : {{ device.Phone }}</h2>
     <hr>
     <h2>Модель : {{ device.Model }}</h2>
     <hr>
-    <h2>Объем памяти : {{ device.MemorySize }}</h2>
+    <h2>Объем памяти : {{ device.MemorySize }} Гб</h2>
     <hr>
     <h2>Размер дисплея в дюймах : {{ device.Display }}</h2>
     <hr>
-    <h2>Страна производитель : {{ device.Producer }}</h2>
+    <h2>Страна : {{ device.Producer }}</h2>
     <hr>
     <h2>Цена : {{ device.Price }}</h2>
 </div>
 
-    <div>
+    <div class="headcomments">
         <h1> Отзывы </h1>
     </div>
-    {% for comments in comment %}
-                <h4> Aвтор: {{ comments.author }}, время
-                    {{ comments.getCreatedAt|date("F jS \y \\a\\t g:ia") }} </h4>
-                <h1>{{ comments.message }}</h1>
-    {% endfor %}
+    <div class="comments">
+        {% for comments in comment %}
+            <p class="commentauthor">
+                 Aвтор: {{ comments.author }}
+            </p>
+                    <p class="commenttime">
+                        Время: {{ comments.getCreatedAt|date("F jS \y \\a\\t g:ia") }}
+                    </p>
 
-    <div>
-        {{ form(form) }}
+            <h1>{{ comments.message }}</h1>
+
+        {% endfor %}
+    </div>
+        <div class="commentmessage">
+            {{ form(form) }}
+        </div>
     </div>
 
 {% endblock %}

@@ -2,14 +2,11 @@
 <html>
     <head>
         <meta charset="UTF-8">
+
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="/css/fullcss.css" rel="stylesheet" >
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <style>
-            .btn-group{
-                padding: 20px;
-            }
-        </style>
         {% block stylesheets %}
 
         {% endblock %}
@@ -30,22 +27,26 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12 col-md-4">
-                    {% block header %}
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <a type="button" href="{{  path('device_list',{}) }}" class="btn btn-primary">Главная</a>
-                            <a type="button" href="{{ path('device_basket',{}) }}" class="btn btn-primary">Корзина</a>
-                            <a type="button" href="{{ path('contacts_information',{'information' :1}) }}" class="btn btn-primary">Контакты</a>
-                            {% if is_granted('ROLE_ADMIN_USER')%}
-                                <a type="button" href="{{  path('create_device',{}) }}" class="btn btn-primary">Добавить устройство</a>
-                            {% endif %}
-{#                            <p>Поиск:#}
-{#                                <input type="text" size="60">#}
-{#                            </p>#}
-                        </div>
+{#                <div class=" col-sm-12 col-xs-12 col-md-4">#}
+                        {% block header %}
+                    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-6 mb-3 bg-white border-bottom shadow-sm justify-content-center">
+                        <nav class="my-2 my-md-0 mr-md-3">
+{#                    <div class="btn-group" role="group" aria-label="Basic example">#}
+                                <a type="button" href="{{  path('device_list',{}) }}" class="btn btn-primary">Главная</a>
+                                <a type="button" href="{{ path('device_basket',{}) }}" class="btn btn-primary">Корзина</a>
+                                <a type="button" href="{{ path('contacts_information',{'information' :1}) }}" class="btn btn-primary">Контакты</a>
+                                {% if is_granted('ROLE_ADMIN_USER')%}
+                                    <a type="button" href="{{  path('create_device',{}) }}" class="btn btn-primary">Добавить устройство</a>
+                                {% endif %}
+{#                    </div>#}
+                        </nav>
+    {#                            <p>Поиск:#}
+    {#                                <input type="text" size="60">#}
+    {#                            </p>#}
+                    </div>
+                        {% endblock %}
+                    </div>
 
-                    {% endblock %}
-                </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
@@ -57,7 +58,9 @@
             <div class="row">
                 <div class="col-12">
                 {% block footer %}
-                    Разработчик Max (c) 2019
+                    <div class="foot">
+                    Разработчик Max (c) 2019.
+                    </div>
                 {% endblock %}
                 </div>
             </div>

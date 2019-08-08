@@ -3,10 +3,10 @@
 {% block title %}Корзина{% endblock %}
 
 {% block body %}
-    <div>Товары в корзине</div><br>
+    <div class="headpage"><h1>Товары в корзине:</h1></div><br>
     <div class="row">
     {% for device in devices %}
-
+        <div class="col-sm-6 col-xs-12 col-md-4 col-lg-3">
             <div class="col-sm-3 col-md-4">
                 <div class="card" style="width: 16rem;">
                     <img src="{{ device.ref_picture }}" class="card-img-top" alt="">
@@ -14,8 +14,8 @@
                         <h1></h1>
                         <h5 class="card-title"> {{ device.phone }}</h5>
                         <p class="card-text">Цена: {{ device.price }}</p>
-                        <a href="{{ path('device_show',{'device' :device.id}) }}" class="btn btn-primary">Больше информаии
-                            о {{ device.phone }} {{ device.model }}</a>
+                        <a href="{{ path('device_show',{'device' :device.id}) }}" class="btn btn-primary">Подробнее
+                           </a>
                         {% if is_granted('ROLE_ADMIN_USER') %}
                             <a href="{{ path('device_edit',{'id' :device.id}) }}" class="card-link">Редактировать</a>
                         {% endif %}
@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-
+        </div>
     {% endfor %}
     </div>
 {% endblock %}

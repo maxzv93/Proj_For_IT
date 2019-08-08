@@ -155,14 +155,25 @@ class DeviceRepository extends ServiceEntityRepository
     public function setAllItemsUser($userid,$itemid): array
     {
         $conn = $this->getEntityManager()->getConnection();
-
-        $sql = 'INSERT INTO device_user VALUES (:itemid, :userid)';
-
+        $sql = 'SELECT * FROM device_user 
+                WHERE device_id = :itemid 
+                AND user_id = :userid';
         $stmt = $conn->prepare($sql);
         $stmt->execute(['itemid' => $itemid,'userid' => $userid]);
+        if(empty($stmt->fetchAll()))
+        {
+            $sql = 'INSERT INTO device_user VALUES (:itemid, :userid)';
 
-        // returns an array of arrays (i.e. a raw data set)
-        return $stmt->fetchAll();
+            $stmt = $conn->prepare($sql);
+            $stmt->execute(['itemid' => $itemid,'userid' => $userid]);
+
+            // returns an array of arrays (i.e. a raw data set)
+            return $stmt->fetchAll();
+        }
+        else
+            return $stmt->fetchAll();
+
+
     }
 
     public function deleteItemsUser($userid,$itemid): array
@@ -184,7 +195,7 @@ class DeviceRepository extends ServiceEntityRepository
     {
         $conn = $this->getEntityManager()->getConnection();
 
-        $sql = 'SELECT DISTINCT p.phone FROM device p';
+        $sql = 'SELECT DISTINCT p.phone FROM device p where p.is_delete <> 1';
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();

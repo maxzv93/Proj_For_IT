@@ -62,12 +62,12 @@ public function setToFavourite(Device $device)//User $user, Device $device)
         ->getRepository(Device::class)
         ->setAllItemsUser($id,$itemid);
 //    dd($data);
-
-    return $this->render(
-        'basket/basket.html.twig'
-        ,
-        ["devices" => $data]
-    );
+    return $this->redirectToRoute('device_basket');
+//    return $this->render(
+//        'basket/basket.html.twig'
+//        ,
+//        ["devices" => $data]
+//    );
 }
 
 
@@ -84,13 +84,13 @@ public function setToFavourite(Device $device)//User $user, Device $device)
         $data = $this->getDoctrine()
             ->getRepository(Device::class)
             ->deleteItemsUser($id,$itemid);
+        return $this->redirectToRoute('device_basket');
 
-
-        return $this->render(
-            'basket/basket.html.twig'
-            ,
-            ["devices" => $data]
-        );
+//        return $this->render(
+//            'basket/basket.html.twig'
+//            ,
+//            ["devices" => $data]
+//        );
     }
 
 }

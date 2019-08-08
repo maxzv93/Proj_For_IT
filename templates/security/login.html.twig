@@ -20,13 +20,19 @@
     {% if app.user %}
         <div class="checkbox mb-3">Вы вошли как {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a></div>
     {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">Вход</h1>
-    <label for="inputEmail" class="sr-only">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
-    <label for="inputPassword" class="sr-only">Пароль</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-
+    <div class="inputbut">
+        <h1 class="h3 mb-3 font-weight-normal">Вход</h1>
+    </div>
+    <div class="inputfields">
+        <div class="inputfield">
+        <label for="inputEmail" class="sr-only">Email</label>
+        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+        </div>
+        <div class="inputfield">
+        <label for="inputPassword" class="sr-only">Пароль</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        </div>
+    </div>
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >
@@ -41,9 +47,10 @@
             </label>
         </div>
     #}
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Войти
-    </button>
+    <div class="inputbut">
+        <button class="btn btn-lg btn-primary" type="submit">
+            Войти
+        </button>
+    </div>
 </form>
 {% endblock %}
