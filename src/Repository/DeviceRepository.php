@@ -195,11 +195,24 @@ class DeviceRepository extends ServiceEntityRepository
     {
         $conn = $this->getEntityManager()->getConnection();
 
-        $sql = 'SELECT DISTINCT p.phone FROM device p where p.is_delete <> 1';
+        $sql = 'SELECT DISTINCT p.phone FROM device p where p.is_delete is null or p.is_delete = false';
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
+//        dd($stmt->fetchAll());
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll();
+    }
 
+    public function findMaxPrice(): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'SELECT DISTINCT p.price FROM device p';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+//        dd($stmt->fetchAll());
         // returns an array of arrays (i.e. a raw data set)
         return $stmt->fetchAll();
     }

@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
-
+{#<head>#}
+{#<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>#}
+{#</head>#}
 {% block title %}Корзина{% endblock %}
+
+
 
 {% block body %}
     <div class="headpage"><h1>Товары в корзине:</h1></div><br>
@@ -27,12 +31,36 @@
         </div>
     {% endfor %}
     </div>
+    <br>
+    <div class="col-sm-9" class="buy">
+{#        <a class="btn btn-primary" onclick="buyDevice();"> Купить выбранные товары </a>#}
+    </div>
 {% endblock %}
 
+
 {% block footer %}
-    <br>
-<div class="col-sm-9">
-    <a href="" class="btn btn-primary"> Купить выбранные товары </a>
-</div>
+
 {% endblock %}
+
+{#       {% block javascripts %}#}
+{#               function buyDevice(){#}
+{#                   console.log('hello');#}
+{#                   $.get("/buy", {}, function (data) {#}
+{#                       if(data.status === "success")#}
+{#                       {#}
+{#                           $(".alert").html("Поздравляем");#}
+{#                           console.log(data.status);#}
+{#                           console.log(data);#}
+{#                       }#}
+{#                       else#}
+{#                       {#}
+{#                           $(".alert").html("Чтото пошло нетaк");#}
+{#                           console.log(data);#}
+{#                       }#}
+{#                   });#}
+{#               }#}
+{#       {% endblock %}#}
+
+
+
 

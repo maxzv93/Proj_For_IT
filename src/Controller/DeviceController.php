@@ -383,5 +383,17 @@ class DeviceController extends AbstractController
         return new Response("Создан новое сообщение с id: ");
 
     }
+//, methods={"GET"})
+    /**
+     * @Route("/buy", name="buy_device")
+     * @param Device $device
+     * @return Response
+     */
+    public function buyDevice()
+    {
+        $arr = ["status" => "success"];
+        dd($arr);
+        return $this->json($arr);
+    }
 
 }
