@@ -195,7 +195,7 @@ class DeviceRepository extends ServiceEntityRepository
     {
         $conn = $this->getEntityManager()->getConnection();
 
-        $sql = 'SELECT DISTINCT p.phone FROM device p where p.is_delete is null or p.is_delete = false';
+        $sql = 'SELECT DISTINCT p.phone FROM device p where p.is_delete is null or p.is_delete = 0';
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();

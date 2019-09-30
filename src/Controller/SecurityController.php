@@ -14,6 +14,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
+
     /**
      * @Route("/login", name="app_login")
      */
@@ -31,6 +32,7 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
+
     /**
      * @Route("/logout", name="app_logout")
      */
@@ -41,24 +43,6 @@ class SecurityController extends AbstractController
         //throw new \Exception('This method can be blank - it will be intercepted by the logout key on your firewall');
     }
 
-    /**
-     * @Route("/admin/create/", name="generate_new_admin")
-     */
-    public function createAdmin(UserPasswordEncoderInterface $encoder)
-    {
-        $admin = new User();
-        $admin->setEmail("admin@admin.ru");
-        $password ="admin";
-        $admin->setPassword($encoder->encodePassword($admin, $password));
 
-        $admin->setRoles(array("ROLE_ADMIN_USER","ROLE_USER"));
-
-        $manager = $this->getDoctrine()->getManager();
-        $manager->persist($admin);
-        $manager->flush();
-
-        return new Response("Создан новый пользователь с логином: "
-            .$admin->getEmail()." и паролем: ".$password.".");
-    }
 
 }

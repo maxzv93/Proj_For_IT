@@ -14,6 +14,9 @@ class RegistrationController extends AbstractController
 {
     /**
      * @Route("/register", name="app_register")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return Response
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
@@ -42,5 +45,28 @@ class RegistrationController extends AbstractController
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
+    }
+
+
+    /**
+     * @Route("/createadmin", name="generate_new_admin")
+     * @param UserPasswordEncoderInterface $encoder
+     * @return Response
+     */
+    public function createNewAdmin(UserPasswordEncoderInterface $encoder)
+    {
+        $admin = new User();
+         $admin->setEmail("admin@admin.ru");
+        $password ="admin";
+        $admin->setPassword($encoder->encodePassword($admin, $password));
+
+        $admin->setRoles(array("ROLE_ADMIN_USER","ROLE_USER"));
+
+        $manager = $this->getDoctrine()->getManager();
+        $manager->persist($admin);
+        $manager->flush();
+
+        return new Response("Создан новый пользователь с логином: "
+            .$admin->getEmail()." и паролем: ".$password.".");
     }
 }

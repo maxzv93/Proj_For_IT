@@ -396,4 +396,17 @@ class DeviceController extends AbstractController
         return $this->json($arr);
     }
 
+
+    /**
+     * @Route("/raul/{num}", requirements={"num"="\d+"}, name="raul_resp")
+     * @param $num
+     * @return Response
+     */
+    public function respRaul($num)
+    {
+        $arr = ["hello Raul", $num];
+        return $this->json($arr);//new Response("Создан новое сообщение с id: ");
+    }
+
+
 }
